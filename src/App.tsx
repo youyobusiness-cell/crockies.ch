@@ -4,9 +4,9 @@ import { ArrowDown, ArrowRight, Check, Cookie, Instagram, Menu, Minus, Plus, Sho
 type Product = { id: string; name: string; kind: 'cookie' | 'gift'; description: string; palette: string[] };
 type CartLine = { id: string; quantity: number };
 const PRODUCTS: Product[] = [
-  { id: 'pepites', name: 'Pépites de chocolat', kind: 'cookie', description: 'Une recette aux éclats de chocolat, à découvrir et à partager.', palette: ['#d79b5b', '#6c351d', '#9e522e'] },
-  { id: 'tout-chocolat', name: 'Tout chocolat', kind: 'cookie', description: 'Une recette pensée pour les amateurs de chocolat.', palette: ['#70402c', '#321910', '#a55d36'] },
-  { id: 'cacahuete', name: 'Beurre de cacahuète', kind: 'cookie', description: 'La cacahuète dans une recette gourmande à découvrir.', palette: ['#d9b873', '#79502d', '#a8773e'] },
+  { id: 'Chocolat-basique', name: 'Chocolat', kind: 'cookie', description: 'Le classique, celui qui ne déçoit jamais.', palette: ['#d79b5b', '#6c351d', '#9e522e'] },
+  { id: 'Frambois-chocolat-blanc', name: 'Framboise et chocolat blanc', kind: 'cookie', description: 'Pour ceux qui aiment être surpris.', palette: ['#70402c', '#321910', '#a55d36'] },
+  { id: 'Pistache-chocolat-blanc', name: 'Pistache et chocolat blanc', kind: 'cookie', description: 'Le goût qui a du caractère.', palette: ['#d9b873', '#79502d', '#a8773e'] },
   { id: 'petite-attention', name: 'La Petite Attention', kind: 'gift', description: 'Un petit geste qui arrive avec le sourire. Le plaisir de partager.', palette: ['#c78852', '#f1d9b6', '#ad6c48'] },
   { id: 'grand-moment', name: 'Le Grand Moment', kind: 'gift', description: 'Pour les grandes tablées et les souvenirs qui méritent leur boîte.', palette: ['#6b3526', '#f1d9b6', '#6b3526'] },
   { id: 'boite-bonheur', name: 'La Boîte à Bonheur', kind: 'gift', description: 'Une attention à offrir, à partager, ou à garder juste un peu.', palette: ['#849575', '#f1d9b6', '#849575'] },
@@ -123,34 +123,34 @@ function App() {
       <section className="hero" id="accueil">
         <div className="hero-copy">
           <div className="eyebrow">Fait pour les petits grands moments</div>
-          <h1>Un cookie.<br /><em>Un vrai moment.</em></h1>
-          <p className="hero-lead">Des recettes pensées avec soin, préparées en Suisse. À offrir, à partager, ou à savourer sans raison particulière.</p>
+          <h1>Un cookie.<br /><em>Car un croc ne suffit pas.</em></h1>
+          <p className="hero-lead">Des recettes pensées avec soin, préparées en Suisse. À offrir, à partager, ou à savourer.</p>
           <a className="button-dark" href="#cookies">Découvrir les cookies <ArrowRight size={15} /></a>
-          <div className="hero-meta"><span className="swatches"><i style={{ background: '#dba96f' }} /><i style={{ background: '#6b351d' }} /><i style={{ background: '#a6b58f' }} /></span>Des recettes adaptées aux saisons et aux occasions</div>
+          <div className="hero-meta"><span className="swatches"><i style={{ background: '#dba96f' }} /><i style={{ background: '#6b351d' }} /><i style={{ background: '#a6b58f' }} /></span>De nouvelles éditions en lien avec les saisons et les fêtes seront disponibles au fil de l'année</div>
         </div>
         <div className="hero-art"><img className="hero-brand-mark" src={asset('assets/crockies-logo-hero.png')} alt="Crockies — cookies artisanaux, élaboré en Suisse" width="600" height="600" /></div>
         <div className="scroll-note">Une histoire à découvrir <ArrowDown size={12} /></div>
       </section>
       <section className="story-band" id="histoire">
-        <div><div className="eyebrow">01 — L’aventure Crockies</div><h2>Une petite<br /><em>bouchée</em> de<br />bonheur.</h2></div>
-        <p className="story-copy">Crockies est une mini-entreprise de Fribourg, née dans le cadre du Company Programme de Young Enterprise Switzerland. Notre envie : faire d’un cookie une attention simple, généreuse et bien pensée.</p>
+        <div><div className="eyebrow">01 — L’aventure Crockies</div><h2>Une<br /><em>mini-entreprise</em> de<br />choc.</h2></div>
+        <p className="story-copy">Crockies est une mini-entreprise fribourgeoise créée dans le cadre du Company Programme de Young Enterprise Switzerland. Notre concept est simple : prendre un cookie, lui donner plus de style et surtout le rendre exquis, pour qu’au final il finisse entre vos mains. Nos cookies sont fabriqués en Suisse par un partenaire spécialisé, avec des recettes gourmandes et des ingrédients soigneusement choisis. Vous n’allez cependant pas manger le même cookie toute l’année, Crockies s’adapte aux saisons et événements : Halloween, Noël, Saint-Nicolas… Bref, pas besoin de s'inventer des excuses pour en manger. Notre objectif ? Faire du cookie un produit de qualité, alléchant et à partager.</p>
         <div className="story-points"><div className="story-point"><strong>01</strong><span>Des recettes qui suivent les saisons et les occasions.</span></div><div className="story-point"><strong>02</strong><span>Des cookies élaborés en Suisse avec un partenaire spécialiste.</span></div></div>
       </section>
       <section className="section products-section" id="cookies">
-        <div className="section-head"><div className="section-heading"><div className="eyebrow">02 — À découvrir</div><h2>Choisissez votre<br /><em>pause.</em></h2></div><p className="section-intro">Trois recettes à découvrir, chacune avec sa personnalité. Les prix et disponibilités sont confirmés par e-mail.</p></div>
+        <div className="section-head"><div className="section-heading"><div className="eyebrow">02 — À découvrir</div><h2>Choisissez votre<br /><em>caractère.</em></h2></div><p className="section-intro">Trois recettes à découvrir, chacune avec sa personnalité.</p></div>
         <div className="product-grid">{PRODUCTS.filter((product) => product.kind === 'cookie').map((product) => <article className="product-card" key={product.id} data-testid={`card-product-${product.id}`}>
           <div className="cookie-plate"><CookieDrawing palette={product.palette} label={product.name} /></div><div className="product-info"><h3>{product.name}</h3><p>{product.description}</p><button className="card-add" onClick={() => add(product.id)} data-testid={`button-add-${product.id}`}>{added === product.id ? <><Check size={14} /> Ajouté au panier</> : 'Ajouter à ma demande'}</button></div>
         </article>)}</div>
       </section>
       <section className="section gift-section" id="cadeaux">
-        <div className="section-head"><div className="section-heading"><div className="eyebrow" style={{ color: '#e6ad78' }}>03 — À offrir, à partager</div><h2>Pour chaque<br /><em>attention.</em></h2></div><p className="section-intro">Un coffret à offrir, à choisir selon l’occasion. Écrivez-nous pour connaître le contenu, les prix et les disponibilités.</p></div>
+        <div className="section-head"><div className="section-heading"><div className="eyebrow" style={{ color: '#e6ad78' }}>03 — Le meilleure des cadeaux</div><h2>Pour vous ou<br /><em>comme cadeau.</em></h2></div><p className="section-intro">Un coffret à offrir, à choisir selon l’occasion.</p></div>
         <div className="gift-grid">{PRODUCTS.filter((product) => product.kind === 'gift').map((product) => <article className="gift-card" key={product.id} data-testid={`card-product-${product.id}`}>
           <div className="gift-art"><GiftDrawing palette={product.palette} /><span className="gift-seal">avec<br />soin</span></div><div className="gift-info"><h3>{product.name}</h3><small>Coffret cadeau</small><p>{product.description}</p><button className="gift-add" onClick={() => add(product.id)} data-testid={`button-add-${product.id}`}>{added === product.id ? 'Ajouté à votre demande' : 'Ajouter à ma demande'}</button></div>
         </article>)}</div>
       </section>
       <section className="section note-section">
         <div><div className="eyebrow">04 — Le petit mot</div><h2>Les mots<br />restent.<br /><em>Les miettes<br />aussi.</em></h2></div>
-        <div className="note-card"><span>Une carte dans chaque boîte</span><p>« Pour une personne vraiment chouette. »</p><small>Un petit mot, une grande attention.</small></div>
+        <div className="note-card"><span>Une carte dans chaque boîte</span><p>« Pour une personne vraiment croquante. »</p><small>Un petit mot, une grande attention.</small></div>
       </section>
       <section className="section process-section">
         <div className="section-head"><div className="section-heading"><div className="eyebrow">05 — En toute simplicité</div><h2>Une demande,<br /><em>pas un paiement.</em></h2></div><p className="section-intro">Le panier vous aide à préparer votre message. C’est Crockies qui vous répondra pour la suite.</p></div>
