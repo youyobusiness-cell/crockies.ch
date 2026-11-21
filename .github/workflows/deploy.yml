@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PORT: "3000"
-      BASE_PATH: "/crockies.ch/"
+      BASE_PATH: /
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
