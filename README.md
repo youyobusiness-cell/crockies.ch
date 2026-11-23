@@ -1,43 +1,62 @@
-# Crockies — cookies artisanaux
+# Crockies
 
-Site vitrine et boutique de demande de commande pour Crockies, mini-entreprise fribourgeoise créée dans le cadre du Company Programme de Young Enterprise Switzerland.
+Site vitrine responsive de Crockies, mini-entreprise fribourgeoise créée dans le cadre du Company Programme de Young Enterprise Switzerland. Le projet utilise Vite, React, TypeScript et Tailwind CSS.
 
-## Fonctionnement
+## Prérequis
 
-- Site responsive en français, avec recettes, coffrets, présentation de Crockies et coordonnées.
-- Le panier est conservé uniquement dans le navigateur, avec `localStorage`.
-- Préparer une demande ouvre un brouillon adressé à `contact.crockies@gmail.com`. Le visiteur doit l'envoyer depuis son application e-mail.
-- Il n'y a ni paiement en ligne, ni envoi de commande au serveur, ni confirmation automatique. Une commande n'est pas ferme avant une réponse de Crockies.
+- Node.js 20 ou plus récent
+- npm
 
-## Informations à confirmer avant publication
+## Installation et démarrage local
 
-- Prix et disponibilité des cookies et coffrets.
-- Horaires et éventuelle possibilité de retrait sur place.
-- Numéro de téléphone, si Crockies souhaite en afficher un.
-- Adresse publique du site, pour finaliser l'URL canonique et le partage social.
+Depuis le dossier du projet :
 
-Les informations non confirmées ne sont pas présentées comme des faits sur le site.
+```sh
+npm ci --legacy-peer-deps
+npm run dev
+```
+
+Le site est disponible à l’adresse locale indiquée par Vite (par défaut `http://localhost:5173`). Pour construire et prévisualiser la version de production :
+
+```sh
+npm run build
+npm run serve
+```
+
+Le site généré se trouve dans `dist/public`.
+
+## Commandes utiles
+
+- `npm run dev` : démarrer le serveur local.
+- `npm run build` : construire le site pour la production.
+- `npm run serve` : prévisualiser le dernier build.
+- `npm run typecheck` : vérifier les types TypeScript.
+
+Le chemin de base est `/` par défaut. Le workflow GitHub Pages fournit son propre `BASE_PATH` pour publier le site sous le nom du dépôt.
 
 ## Publication sur GitHub Pages
 
-Le dépôt contient un workflow GitHub Actions qui construit le site et le publie sur GitHub Pages. Il adapte automatiquement le chemin du site pour un dépôt de projet (`https://utilisateur.github.io/nom-du-depot/`) ou un dépôt de site utilisateur (`https://utilisateur.github.io/`).
+Le workflow `.github/workflows/deploy.yml` construit et publie le site à chaque envoi sur la branche `main`.
 
-1. Envoyez ce projet dans un dépôt GitHub et choisissez `main` ou `master` comme branche principale.
-2. Dans le dépôt, ouvrez **Settings → Pages** et choisissez **GitHub Actions** comme source de publication.
-3. Envoyez un commit sur la branche principale, ou lancez **Publish Crockies on GitHub Pages** depuis l'onglet **Actions**.
-4. Attendez que les tâches **build** et **deploy** réussissent. GitHub affichera l'adresse publiée dans **Settings → Pages**.
+1. Importez le contenu de ce dossier dans un dépôt GitHub dont le nom correspond au chemin `BASE_PATH` configuré dans le workflow.
+2. Dans le dépôt, ouvrez **Settings → Pages** et sélectionnez **GitHub Actions** comme source.
+3. Envoyez un commit sur `main`, ou lancez le workflow depuis l’onglet **Actions**.
+4. Attendez la réussite des étapes de construction et de publication. L’adresse du site apparaît dans **Settings → Pages**.
 
-Si vous utilisez un domaine personnalisé, configurez-le dans **Settings → Pages**, puis vérifiez les DNS et les informations canoniques avant d'annoncer le site.
+Si le dépôt change de nom, vérifiez le `BASE_PATH` dans le workflow avant la publication.
 
-## Vérifications locales
+## Panier et commandes
 
-```sh
-pnpm install --frozen-lockfile
-PORT=4173 BASE_PATH=/ pnpm --filter @workspace/crockies-site run build
-```
+Le panier est conservé dans le navigateur avec `localStorage`. Par défaut, le bouton de demande ouvre un brouillon d’e-mail à `contact.crockies@gmail.com`. Le visiteur doit envoyer le message lui-même. Le site ne confirme ni ne réserve de commande automatiquement.
 
-Les fichiers statiques produits sont dans `artifacts/crockies-site/dist/public`.
+Les pages légales sont servies depuis `public/legal/` et liées dans la colonne « Légal » du pied de page.
 
-## Contenu et confidentialité
+## Préparation Stripe
 
-Les demandes sont préparées dans le navigateur et ouvertes dans le logiciel de messagerie du visiteur. Le site ne collecte pas de coordonnées sur un serveur. Le panier local peut être effacé depuis le navigateur. Les liens vers les réseaux sociaux ouvrent des services tiers.
+Le checkout Stripe n’est pas activé. Le parcours e-mail reste utilisé tant que `VITE_STRIPE_ENABLED` n’est pas défini à `true`. Le point d’entrée préparé appelle `/api/checkout/session`, mais cette API serveur doit encore être développée et déployée avant tout paiement.
+
+Les variables de navigateur sont documentées dans `.env.example`. Pour un développement local, créez `.env.local` à partir de ce fichier. Les secrets Stripe (`sk_...` et `whsec_...`) doivent uniquement être configurés dans l’environnement du serveur et ne doivent jamais être ajoutés au dépôt ni à une variable `VITE_`.
+
+## Sécurité des fichiers locaux
+
+`.gitignore` exclut les dépendances installées, les fichiers générés et les fichiers `.env` locaux. Seul `.env.example` est destiné au dépôt; il ne contient aucune clé réelle.
