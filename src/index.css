@@ -438,7 +438,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid #9a4e2c; outline-offs
 .cart-row {display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;border-bottom:1px solid #e1d3c4;padding:18px 0;}
 .cart-mini {height:58px;border-radius:9px;background:#eddfce;display:grid;place-items:center;position:relative;overflow:hidden;}
 .cart-mini .cookie-illustration {width:48px;height:48px;}
-.cart-mini .gift-box {transform:rotate(-4deg) scale(.36);}
+.cart-mini .gift-box {position:absolute;left:50%;top:50%;width:42px;height:36px;margin:0;transform:translate(-50%,-50%) rotate(-4deg);outline:1px solid #b89476;box-shadow:0 2px 5px #3a1b1233;}
+.cart-mini .gift-box:before {width:5px;}
+.cart-mini .gift-box:after {height:4px;}
+.cart-mini .gift-bow {top:-7px;width:14px;height:9px;border-width:2px;}
+.cart-mini .gift-bow:after {left:6px;top:-2px;width:13px;height:8px;border-width:2px;}
+.cart-mini .gift-letter {font-size:6px;}
 .cart-row h3 {font:500 17px var(--app-font-serif);margin:0 0 5px;}
 .cart-row small {font-size:10px;color:#6b594d;}
 .qty-control {display:flex;align-items:center;gap:10px;margin-top:10px;}
