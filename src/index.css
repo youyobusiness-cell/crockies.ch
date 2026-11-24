@@ -436,8 +436,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #9a4e2c; outline-offs
 .icon-button {width:40px;height:40px;border:1px solid #3a1b1240;border-radius:50%;background:transparent;color:#3a1b12;display:grid;place-items:center;cursor:pointer;}
 .cart-items {overflow:auto;flex:1;padding:8px 0;}
 .cart-row {display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;border-bottom:1px solid #e1d3c4;padding:18px 0;}
-.cart-mini {height:58px;border-radius:9px;background:#eddfce;display:grid;place-items:center;}
+.cart-mini {height:58px;border-radius:9px;background:#eddfce;display:grid;place-items:center;position:relative;overflow:hidden;}
 .cart-mini .cookie-illustration {width:48px;height:48px;}
+.cart-mini .gift-box {transform:rotate(-4deg) scale(.36);}
 .cart-row h3 {font:500 17px var(--app-font-serif);margin:0 0 5px;}
 .cart-row small {font-size:10px;color:#6b594d;}
 .qty-control {display:flex;align-items:center;gap:10px;margin-top:10px;}
